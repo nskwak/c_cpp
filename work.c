@@ -1,4 +1,140 @@
-#if 1
+#if 1   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// Cracking the Coding Interview | Data Structure
+// Chapter 2. Linked List - remove duplicate nodes.
+#include <stdio.h>
+#include <malloc.h>
+
+typedef struct Node
+{
+    char ch;
+    struct Node* next;
+}NODE;
+
+void insert(NODE** head_ref, char c)
+{
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
+    new_node->ch = c;
+    new_node->next = *head_ref;
+    *head_ref = new_node;
+    //printf("insert - new_node=%p, data=%c\n", new_node, c);
+}
+
+void append(NODE** head_ref, char c)
+{
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
+    NODE* cur = *head_ref;
+
+    new_node->ch = c;
+    new_node->next = NULL;
+
+    if(*head_ref == NULL)
+    {
+        *head_ref = new_node;
+        return;
+    }
+    while(cur->next != NULL)
+    {
+        cur = cur->next;
+    }
+    cur->next = new_node;
+    printf("append - new_node=%p, data=%c\n", new_node, c);
+}
+
+void printlist(NODE* cur)
+{
+    while(cur != NULL)
+    {
+        printf("%c", cur->ch);
+        cur = cur->next;
+    }
+    printf("\n");
+}
+
+void deleteDups(NODE** head_ref) 
+{
+    NODE* cur = *head_ref;
+    while (cur != NULL) {
+        // Remove all future nodes that have the same value 
+        NODE* runner = cur;
+        while (runner->next != NULL) 
+        {
+            if (runner->next->ch == cur->ch) 
+            {
+                runner->next = runner->next->next;
+            } 
+            else 
+            {
+                runner = runner->next;
+            }
+        }
+        cur = cur->next;
+    }
+}
+
+int main()
+{
+    NODE* head = NULL;
+    insert(&head, 'F');
+    append(&head, 'O');
+    append(&head, 'L');
+    append(&head, 'L');
+    append(&head, 'O');
+    append(&head, 'W');
+    append(&head, ' ');
+    append(&head, 'U');
+    append(&head, 'P');
+    printlist(head);
+
+    deleteDups(&head);
+    printlist(head);
+    
+    return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+#endif
+
+#if 0   //KK_ linkedlist typedef
+///////////////////////////////////////////////////////////////////////////////////
+#include <stdio.h>
+#include <malloc.h>
+
+typedef struct Node {
+    int data;
+    struct Node* pointer;
+} NODE;
+
+void insert(NODE** head_ref, int new_data)
+{
+    NODE* new_node = (NODE*) malloc(sizeof(struct Node));
+    new_node->data = new_data;
+    new_node->pointer = *head_ref;
+    (*head_ref) = new_node;
+    printf("insert - new_node=%p, data=%d\n", new_node, new_data);
+}
+
+void printlist(NODE* cur)
+{
+    while(cur != NULL)
+    {
+        printf(" %d ", cur->data);
+        cur = cur->pointer;
+    }
+    printf("\n");
+}
+
+int main()
+{
+    NODE* head = NULL;
+    insert(&head, 1);
+    printlist(head);
+    return(0);
+}
+///////////////////////////////////////////////////////////////////////////////////
+#endif   //KK_ linkedlist typedef
+
+#if 0   // singly linked list
 ///////////////////////////////////////////////////////////////////////////////////
 // singly linked list 
 // insert data at the beginning of node
@@ -140,12 +276,7 @@ int main()
     return(0);
 }
 ///////////////////////////////////////////////////////////////////////////////////
-#endif
-
-
-
-
-
+#endif  // singly linked list
 
 #if 0
 ////////////////////////////////////////////////////////////////////////////
