@@ -1,7 +1,177 @@
 #if 1   //KK_ 
 ///////////////////////////////////////////////////////////////////////////////////
+// leetcode 19. Remove Nth Node From End of List
+// function: Linked List - leetcode 19. Remove Nth Node From End of List
+// Given linked list: 1->2->3->4->5, and n = 2.
+// After removing the second node from the end, the linked list becomes 1->2->3->5.
+
+#include <stdio.h>
+#include <malloc.h>
+
+typedef struct Node
+{
+    int data;
+    struct Node* next;
+}NODE;
+
+void insert(NODE** head_ref, int new_data)
+{
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
+    new_node->data = new_data;
+    new_node->next = *head_ref;
+    *head_ref = new_node;
+    //printf("insert - new_node=%p, data=%c\n", new_node, c);
+}
+
+void append(NODE** head_ref, int new_data)
+{
+    NODE* new_node = (NODE*) malloc(sizeof(NODE));
+    NODE* cur = *head_ref;
+
+    new_node->data = new_data;
+    new_node->next = NULL;
+
+    if(*head_ref == NULL)
+    {
+        *head_ref = new_node;
+        return;
+    }
+    while(cur->next != NULL)
+    {
+        cur = cur->next;
+    }
+    cur->next = new_node;
+    printf("append - new_node=%p, data=%d\n", new_node, new_data);
+}
+
+void printlist(NODE* cur)
+{
+    while(cur != NULL)
+    {
+        printf("%d", cur->data);
+        cur = cur->next;
+    }
+    printf("\n");
+}
+
+void deletenthnode(NODE** head_ref, int nth) 
+{
+    NODE* cur = *head_ref;
+    int i = 1;
+    while (cur != NULL) {
+        cur = cur->next;
+        i++;
+        printf("%d -> %d\n", i, cur->data);
+    }
+    int totalnode = i - nth;
+    NODE* again = *head_ref;
+    i = 1;
+    while (again != NULL) {
+        again = again->next;
+        i++;
+        if (i == totalnode)
+        {
+            printf("%d -> %d\n", i, again->data);
+            break;
+        }
+    }
+}
+
+int main()
+{
+    NODE* head = NULL;
+    append(&head, 1);
+    append(&head, 2);
+    append(&head, 3);
+    append(&head, 4);
+    append(&head, 5);
+    printlist(head);
+
+    deletenthnode(&head, 2);
+    printlist(head);
+    
+    return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+#endif
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: Kang SM - Finding all paths through a 4x4 grid
+//https://stackoverflow.com/questions/19889079/finding-all-paths-through-a-4x4-grid
+#endif
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: Kang SM - Heap’s Algorithm for generating permutations
+//https://www.geeksforgeeks.org/heaps-algorithm-for-generating-permutations/
+#endif
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: Kang SM, load float data
+// 
+#include <stdio.h>
+
+typedef unsigned char uint8_t;
+typedef char int8_t;
+typedef unsigned int uint16_t;
+typedef int int16_t;
+typedef float FLOAT;
+
+void load_data(uint16_t data)
+{
+    printf("%f\n", data);
+}
+
+int main()
+{
+    printf("%d \n", sizeof(uint8_t));
+    printf("%d \n", sizeof(int8_t));
+    printf("%d \n", sizeof(uint16_t));
+    printf("%d \n", sizeof(int16_t));
+    printf("%d \n", sizeof(FLOAT));
+
+    FLOAT RPM = 1.5;
+    printf("%f\n", RPM);
+    int *input;
+    input = (uint16_t *)(&RPM);
+
+    load_data(input);
+}
+#endif
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: Kang SM, char i = 256
+#include <stdio.h>
+typedef unsigned char uint8_t;
+typedef char int8_t;
+typedef unsigned int uint16_t;
+typedef int int16_t;
+
+int main()
+{
+    //printf("%d \n", sizeof(uint8_t));
+    //printf("%d \n", sizeof(int8_t));
+    //printf("%d \n", sizeof(uint16_t));
+    //printf("%d \n", sizeof(int16_t));
+
+    for (uint8_t i=0; i<256; i++)
+    {
+        printf("%d, a\n", i);
+    }
+}
+#endif
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
 // Cracking the Coding Interview | Data Structure
 // Chapter 2. Linked List - remove duplicate nodes.
+// function: linkedlist, remove duplicate nodes.
 #include <stdio.h>
 #include <malloc.h>
 
@@ -51,7 +221,7 @@ void printlist(NODE* cur)
     printf("\n");
 }
 
-void deleteDups(NODE** head_ref) 
+void deleteDuplicates(NODE** head_ref) 
 {
     NODE* cur = *head_ref;
     while (cur != NULL) {
@@ -86,7 +256,7 @@ int main()
     append(&head, 'P');
     printlist(head);
 
-    deleteDups(&head);
+    deleteDuplicates(&head);
     printlist(head);
     
     return 0;
@@ -95,8 +265,9 @@ int main()
 ///////////////////////////////////////////////////////////////////////////////////
 #endif
 
-#if 0   //KK_ linkedlist typedef
+#if 0    
 ///////////////////////////////////////////////////////////////////////////////////
+// function: linkedlist typedef
 #include <stdio.h>
 #include <malloc.h>
 
@@ -136,7 +307,7 @@ int main()
 
 #if 0   // singly linked list
 ///////////////////////////////////////////////////////////////////////////////////
-// singly linked list 
+// function: singly linked list 
 // insert data at the beginning of node
 // append data at the end of node
 // update data 
@@ -282,7 +453,7 @@ int main()
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 // 2020/02/11 
-// linked list #1
+// function: linked list #1
 // https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
 
 // A complete working C program to demonstrate all insertion methods 
