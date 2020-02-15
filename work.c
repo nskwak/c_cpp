@@ -1,5 +1,62 @@
 #if 1   //KK_ 
 ///////////////////////////////////////////////////////////////////////////////////
+// function: LeetCode:Easy 26. Remove Duplicates from Sorted Array
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int removeduplicate (int* number)
+{
+    int length;
+    length = sizeof(number);
+    return length;
+}
+
+int main()
+{
+    int result;
+    int num[] = {0,0,1,1,1,2,2,3,3,4};
+    //int num[] = {15, 50, 34, 20, 10, 79, 100};
+    int a = sizeof(num);
+    int b = sizeof(int);
+    printf("size of num[] is %d / %d = %d\n", a, b, a/b);
+    //result = removeduplicate(num);
+}
+#endif
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: LeetCode:Easy 509. Fibonacci Number, recursion, recursive calling
+#include <stdio.h>
+#include <malloc.h>
+
+int fibonacci (int number)
+{
+    int val;
+    if (number == 0)
+        return 0;
+    else if(number == 1)
+        return 1;
+    else
+    {
+        val = fibonacci(number - 1) + fibonacci(number - 2);
+    }
+}
+
+int main()
+{
+    int result, num = 7;
+    result = fibonacci(num);
+    printf("fibonacci of %d is %d\n", num, result);
+}
+#endif
+
+
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
 // leetcode 19. Remove Nth Node From End of List
 // function: Linked List - leetcode 19. Remove Nth Node From End of List
 // Given linked list: 1->2->3->4->5, and n = 2.
