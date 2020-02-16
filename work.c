@@ -1,5 +1,162 @@
 #if 1   //KK_ 
 ///////////////////////////////////////////////////////////////////////////////////
+// function: binary search 
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int main()
+{
+    int sorted_number[] = {1, 4, 6, 7, 8, 9};
+    int target = 9;
+    int loopcnt = sizeof(sorted_number)/sizeof(char);
+    printf("%d \n", loopcnt);
+
+    for(i=0; i<(loopcnt/2); i++)
+    {
+        k = str[i];
+        str[i] = str[loopcnt-1-i];
+        str[loopcnt - 1 - i] = k;
+        printf("%d: str[%d]:%c  str[%d]:%c\n", i, i, str[i], loopcnt - 1 - i, str[loopcnt - 1 - i]);
+    }
+
+    //check result
+    for(i=0; i<loopcnt; i++)
+    {
+        printf("%c", str[i]);
+    }
+}
+#endif
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: swap array
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int main()
+{
+    char str[] = {'a', 'b', 'c', 'd', 'c'};
+    int i;
+    char arr[256] = {};
+    char result[256] = {};
+    int k=0;
+
+    int loopcnt = sizeof(str)/sizeof(char);
+    printf("%d \n", loopcnt);
+
+    for(i=0; i<(loopcnt/2); i++)
+    {
+        k = str[i];
+        str[i] = str[loopcnt-1-i];
+        str[loopcnt - 1 - i] = k;
+        printf("%d: str[%d]:%c  str[%d]:%c\n", i, i, str[i], loopcnt - 1 - i, str[loopcnt - 1 - i]);
+    }
+
+    //check result
+    for(i=0; i<loopcnt; i++)
+    {
+        printf("%c", str[i]);
+    }
+}
+#endif
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: find second duplicate with hash table
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int main()
+{
+    char str[] = {'a', 'b', 'c', 'a', 'e', 'b', 'g', 'a', 'b', 'd'};
+    int i;
+    char arr[256] = {};
+    char result[256] = {};
+    int k=0;
+
+    for(i=0; str[i]; i++)
+    {
+        arr[str[i]]++;
+        if(arr[str[i]] == 2)
+        {
+            printf("%c\n", str[i]);
+            result[k++] = str[i];
+            if(k==2)
+            {
+                printf("%c ", result[1]);
+                break;
+            }
+        }
+    }
+}
+#endif
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: remove duplicate with hash table
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int main()
+{
+    char str[] = {'a', 'b', 'c', 'a', 'e', 'b', 'g', 'a', 'b', 'd'};
+    int i;
+    char arr[256] = {};
+    char result[256] = {};
+    int k=0;
+
+    for(i=0; str[i]; i++)
+    {
+        arr[str[i]]++;
+        if(arr[str[i]] == 1)
+        {
+            printf("%c\n", str[i]);
+            result[k++] = str[i];
+            //break;
+        }
+    }
+    for(i=0;i<k;i++)
+    {
+        printf("%c ", result[i]);
+    }
+}
+#endif
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
+// function: find first duplicate with hash table
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int main()
+{
+    int str[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'd'};
+    int i;
+    int arr[256] = {};
+
+    for(i=0; str[i]; i++)
+    {
+        arr[str[i]]++;
+        if(arr[str[i]] == 2)
+        {
+            printf("%c\n", str[i]);
+            break;
+        }
+    }
+}
+#endif
+
+
+
+#if 0   //KK_ 
+///////////////////////////////////////////////////////////////////////////////////
 // function: LeetCode:Easy 26. Remove Duplicates from Sorted Array
 #include <stdio.h>
 #include <malloc.h>
