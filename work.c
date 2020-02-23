@@ -1,5 +1,57 @@
 #if 1   
 ///////////////////////////////////////////////////////////////////////////////////
+// function: sort and searching
+// Cracking code page 66, 9.3
+// Given a sorted array of n integers that has been rotated an unknown number of times,
+// give an O(log n) algorithm that finds an element in the array. you may assume that
+// the array was originally sorted in increasing order.
+// input = [15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14], find '5' -> output should be 8
+#include <stdio.h>
+#include <malloc.h>
+#include <unistd.h>
+
+int searchElement(int* in_arr, int len, int key)
+{
+    int start, end, m;
+    start = 0;
+    end = len - 1;
+    while(start <= end)
+    {
+        m = (start + end) / 2;
+        if(in_arr[m] == key)                return m;
+        else if(in_arr[start] <= in_arr[m])
+        {
+            if(key > in_arr[m])             start = m + 1;
+            else if(key >= in_arr[start])   end = m - 1;
+            else                            start = m + 1;            
+        }
+        else if(key < in_arr[m])            end = m - 1;
+        else if(key <= in_arr[end])         start = m + 1;
+        else                                start = m + start;
+    }
+    return -1;
+}
+
+int main()
+{
+    //int arrayA[] = {4, 5, 7, 10, 14, 15, 16, 19, 20, 25, 1, 3};
+    //int arrayA[] = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
+    //int arrayA[] = {10, 14, 15, 16, 19, 20, 25, 1, 3, 4, 5, 7};
+    int arrayA[] = {25, 1, 3, 4, 5, 7, 10, 14, 15, 16, 19, 20};
+    int lenGth = sizeof(arrayA) / sizeof(int);
+    int rst;
+    int findNum = 5;
+
+    printf("lenGth = %d\n", lenGth);
+    rst = searchElement(arrayA, lenGth, findNum);
+    printf("%d is located at [%d]\n", findNum, rst);
+    return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////
+#endif
+
+#if 0
+///////////////////////////////////////////////////////////////////////////////////
 // function: bit maipulation
 // Cracking code page 57, 5.5
 // input: 31, 14 -> output: 2
