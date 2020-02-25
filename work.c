@@ -1,4 +1,4 @@
-#if 1   
+#if 0   
 ///////////////////////////////////////////////////////////////////////////////////
 // function: sort and searching
 // Cracking code page 66, 9.3
@@ -141,7 +141,7 @@ int main()
 ///////////////////////////////////////////////////////////////////////////////////
 #endif
 
-#if 0   
+#if 1   
 ///////////////////////////////////////////////////////////////////////////////////
 // function: bit maipulation
 // Cracking code page 57, 5.1
@@ -673,32 +673,6 @@ int main()
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 
-
-#if 0   //KK_ 
-///////////////////////////////////////////////////////////////////////////////////
-// function: LeetCode:Easy 26. Remove Duplicates from Sorted Array
-#include <stdio.h>
-#include <malloc.h>
-#include <unistd.h>
-
-int removeduplicate (int* number)
-{
-    int length;
-    length = sizeof(number);
-    return length;
-}
-
-int main()
-{
-    int result;
-    int num[] = {0,0,1,1,1,2,2,3,3,4};
-    //int num[] = {15, 50, 34, 20, 10, 79, 100};
-    int a = sizeof(num);
-    int b = sizeof(int);
-    printf("size of num[] is %d / %d = %d\n", a, b, a/b);
-    //result = removeduplicate(num);
-}
-#endif
 
 
 #if 0   //KK_ 
