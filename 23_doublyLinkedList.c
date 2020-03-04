@@ -88,6 +88,7 @@ void deleteNodeNthFromEnd(NODE** head_ref, int nthfromEnd)
 
 void deleteNode(NODE** head_ref, NODE* del) 
 { 
+	printf("[deleteNode] - *head_ref: %p, del: %p\n", *head_ref, del);
     if (*head_ref == NULL || del == NULL) 
         return; 
     if (*head_ref == del) 
