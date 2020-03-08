@@ -14,6 +14,7 @@ int main()
     signed int var2, var3;
     int i, j, maskingBit;
 
+    printf("%d, %d \n", (int)(sizeof(unsigned int)), (int)(sizeof(signed int))); 
     /*
     printf("====================================================\n");
     printf("// pointer, pointer pointer \n");
@@ -45,7 +46,7 @@ int main()
     printf("signed var2 = 0x%x,  %d \n", var2, var2);
     var2 = 0xffffff8c;
     printf("signed var2 = 0x%x,  %d \n", var2, var2);
-
+    
     printf("====================================================\n");
     printf("// detect if two integers have opposite signs \n");
     var2 = -3;
@@ -117,6 +118,12 @@ int main()
             printf("this is NOT power of %d\n", poWer); 
             break;
         }
+        else if ((remAin == 0) && (var0 == 1))
+        {
+            printf("this is power of %d\n", poWer); 
+            break;
+        }
+        
     }
 
     printf("====================================================\n");
@@ -168,7 +175,6 @@ int main()
     printf("sizeof(float) = %d \n", (int)(sizeof(float)));
     printf("sizeof(double) = %d \n", (int)(sizeof(double)));
     printf("sizeof(long long) = %d \n", (int)(sizeof(long long)));
-
 }
 #endif
 
