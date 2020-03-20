@@ -22,7 +22,7 @@ void *myThreadFun(void *vargp)
     while(1)
     {
         sleep(0.1); 
-        //printf("myThreadFun %d\n", i); 
+        printf("myThreadFun %d\n", i); 
         if(i-- == 0)
         {
             break;
@@ -37,7 +37,7 @@ void *myThreadFun2(void *vargp)
     while(1)
     {
         sleep(0.5); 
-        //printf("myThreadFun2 %d\n", i); 
+        printf("myThreadFun2 %d\n", i); 
         if(i-- == 0)
         {
             break;
