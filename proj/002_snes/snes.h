@@ -1,6 +1,6 @@
 #include <iostream>
 #include "nvme_base.h"
-//using namespace mirne::SCF::NVME;
+using namespace mirne::SCF::NVME;
 
 class nvme_basic_c : public nvme_base_c
 {
