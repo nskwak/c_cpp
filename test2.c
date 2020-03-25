@@ -23,40 +23,12 @@ struct SinglyLinkedList {
     SinglyLinkedListNode* tail;
 };
 
-void print_singly_linked_list(SinglyLinkedListNode* node, char* sep, FILE* fptr) {
-    int i = 0;  //KK_
-    printf("KK_ print_singly_linked_list: node:%p\n", node);
-    while (node) {
-        printf("KK_ %d => %p  \n", node->data, node);
-        fprintf(fptr, "%d", node->data);
-
-        node = node->next;
-
-        if (node) {
-            fprintf(fptr, "%s", sep);
-        }
-        i++;    //KK_
-        if(i > 6)   break;  //KK_
-    }
-    printf("END!!\n");
-}
-
-void free_singly_linked_list(SinglyLinkedListNode* node) {
-    printf("KK_free_singly_linked_list \n");
-    while (node) {
-        SinglyLinkedListNode* temp = node;
-        node = node->next;
-
-        free(temp);
-    }
-}
-
 SinglyLinkedListNode* create_singly_linked_list_node(int node_data) {
     SinglyLinkedListNode* node = malloc(sizeof(SinglyLinkedListNode));
 
     node->data = node_data;
     node->next = NULL;
-    printf("create_singly_linked_list_node:%p, data:%d \n", node, node_data);
+
     return node;
 }
 
@@ -68,16 +40,47 @@ void insert_node_into_singly_linked_list(SinglyLinkedList** singly_linked_list, 
     } else {
         (*singly_linked_list)->tail->next = node;
     }
-    printf("KK_insert_node_into_singly_linked_list => node_data:%d => addnoder:%p ", node_data, node);
-    printf("(*singly_linked_list)->head:%p (*singly_linked_list)->tail:%p \n", (*singly_linked_list)->head, (*singly_linked_list)->tail);
+
     (*singly_linked_list)->tail = node;
 }
 
+void print_singly_linked_list(SinglyLinkedListNode* node, char* sep, FILE* fptr) {
+    while (node) {
+        fprintf(fptr, "%d", node->data);
+
+        node = node->next;
+
+        if (node) {
+            fprintf(fptr, "%s", sep);
+        }
+    }
+}
+
+void free_singly_linked_list(SinglyLinkedListNode* node) {
+    while (node) {
+        SinglyLinkedListNode* temp = node;
+        node = node->next;
+
+        free(temp);
+    }
+}
+
+// Complete the insertNodeAtPosition function below.
+
+/*
+ * For your reference:
+ *
+ * SinglyLinkedListNode {
+ *     int data;
+ *     SinglyLinkedListNode* next;
+ * };
+ *
+ */
 SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* head, int data, int position) {
-    //KK_
     SinglyLinkedListNode* new_node = malloc(sizeof(SinglyLinkedListNode));
     SinglyLinkedListNode* cur = head;
     SinglyLinkedListNode* nthnode;
+    int count = 0;
     new_node->data = data;
     new_node->next = NULL;
     if(cur == NULL)
@@ -85,7 +88,6 @@ SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* head, int data,
         head = new_node;
         return head;
     }
-    int count = 0;
     if(cur->next == NULL)
     {
         nthnode = cur;
@@ -94,25 +96,21 @@ SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* head, int data,
     {
         if(count == (position-1))
         {
-            nthnode = cur->next;
+            nthnode = cur;
             break;
         }
-        printf("%p ", cur);
-        cur = cur->next;
+        cur = cur->next->next;
         count++;
     }
-    printf("\n");
     cur->next = new_node;
     new_node->next = nthnode;
-    printf("KK_insertNodeAtPosition => data:%d => new_node:%p cur:%p, head:%p ", data, new_node, cur, head);
-    printf("nthnode:%p\n", nthnode);    //KK_
     return head;
 }
 
 int main()
 {
-    //KK_FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
-    FILE* fptr = fopen("a.txt", "w");
+    //FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+    FILE* fptr = fopen("a2.txt", "w");
 
     SinglyLinkedList* llist = malloc(sizeof(SinglyLinkedList));
     llist->head = NULL;
@@ -122,14 +120,12 @@ int main()
     char* llist_count_str = readline();
     int llist_count = strtol(llist_count_str, &llist_count_endptr, 10);
 
-    printf("input[001] %d\n", llist_count);
-
     if (llist_count_endptr == llist_count_str || *llist_count_endptr != '\0') { exit(EXIT_FAILURE); }
 
     for (int i = 0; i < llist_count; i++) {
         char* llist_item_endptr;
         char* llist_item_str = readline();
-        int llist_item = strtol(llist_item_str, &llist_item_endptr, 10);    //convert string to long integer
+        int llist_item = strtol(llist_item_str, &llist_item_endptr, 10);
 
         if (llist_item_endptr == llist_item_str || *llist_item_endptr != '\0') { exit(EXIT_FAILURE); }
 
@@ -148,16 +144,14 @@ int main()
 
     if (position_endptr == position_str || *position_endptr != '\0') { exit(EXIT_FAILURE); }
 
-    SinglyLinkedListNode* llist_head = insertNodeAtPosition(llist->head, data, position);   //KK_ 
-    //KK_SinglyLinkedListNode* llist_head = llist->head; //KK_ added for test
+    SinglyLinkedListNode* llist_head = insertNodeAtPosition(llist->head, data, position);
+
     char *sep = " ";
 
-    print_singly_linked_list(llist_head, sep, fptr);    //KK_ 
-    fprintf(fptr, "\n%s", "KK_000001\n");
-    fprintf(fptr, "%s", "KK_000002\n");
-    fprintf(fptr, "%s", "\n");
+    print_singly_linked_list(llist_head, sep, fptr);
+    fprintf(fptr, "\n");
 
-    free_singly_linked_list(llist_head);          //KK_ 
+    free_singly_linked_list(llist_head);
 
     fclose(fptr);
 
