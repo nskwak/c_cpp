@@ -7,7 +7,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+////////////////////////////////////////////////////////////////////////////
+// Hackerrank.com : Insert a node at a specific position in a linked list
+// input
+// 3 => total node to insert
+// 1 => 1st data
+// 2 => 2nd data
+// 3 => 3rd data
+// 5 => data to insert
+// 2 => nth node to insert
 
+////////////////////////////////////////////////////////////////////////////
 char* readline();
 
 typedef struct SinglyLinkedListNode SinglyLinkedListNode;
@@ -77,16 +87,40 @@ void free_singly_linked_list(SinglyLinkedListNode* node) {
  *
  */
 SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* head, int data, int position) {
-    /*
-    add code at this point
-    */
-
-
+    SinglyLinkedListNode* new_node = malloc(sizeof(SinglyLinkedListNode));
+    SinglyLinkedListNode* cur = head;
+    SinglyLinkedListNode* nthnode;
+    new_node->data = data;
+    new_node->next = NULL;
+    if(cur == NULL)
+    {
+        head = new_node;
+        return head;
+    }
+    int count = 0;
+    if(cur->next == NULL)
+    {
+        nthnode = cur;
+    }
+    while(cur->next != NULL)
+    {
+        if(count == (position-1))
+        {
+            nthnode = cur->next;
+            break;
+        }
+        cur = cur->next;
+        count++;
+    }
+    cur->next = new_node;
+    new_node->next = nthnode;
+    return head;
 }
 
 int main()
 {
-    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+    //KK_FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+    FILE* fptr = fopen("a.txt", "w");
 
     SinglyLinkedList* llist = malloc(sizeof(SinglyLinkedList));
     llist->head = NULL;
@@ -120,14 +154,14 @@ int main()
 
     if (position_endptr == position_str || *position_endptr != '\0') { exit(EXIT_FAILURE); }
 
-    SinglyLinkedListNode* llist_head = insertNodeAtPosition(llist->head, data, position);   //KK_ 
+    SinglyLinkedListNode* llist_head = insertNodeAtPosition(llist->head, data, position);
 
     char *sep = " ";
 
-    print_singly_linked_list(llist_head, sep, fptr);    //KK_ 
+    print_singly_linked_list(llist_head, sep, fptr);
     fprintf(fptr, "\n");
 
-    free_singly_linked_list(llist_head);          //KK_ 
+    free_singly_linked_list(llist_head);
 
     fclose(fptr);
 
